@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Call App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-900 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white mb-2">Video Call App</h1>
+            <p class="text-gray-400">Connect with anyone, anywhere</p>
+        </header>
+
+        <!-- Main Content -->
+        <div class="max-w-4xl mx-auto">
+            <!-- Room Controls -->
+            <div class="bg-gray-800 rounded-lg p-6 mb-8">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <input type="text" id="roomId" placeholder="Enter Room ID" 
+                           class="w-full md:w-2/3 px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-blue-500">
+                    <button id="joinBtn" 
+                            class="w-full md:w-auto px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        Join Room
+                    </button>
+                </div>
+            </div>
+
+            <!-- Video Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Local Video -->
+                <div class="relative">
+                    <video id="localVideo" autoplay muted playsinline 
+                           class="w-full rounded-lg bg-gray-800 transform -scale-x-100"></video>
+                    <span class="absolute bottom-4 left-4 bg-gray-900 px-3 py-1 rounded-lg text-white text-sm">
+                        You
+                    </span>
+                </div>
+                <!-- Remote Video -->
+                <div class="relative">
+                    <video id="remoteVideo" autoplay playsinline 
+                           class="w-full rounded-lg bg-gray-800"></video>
+                    <span class="absolute bottom-4 left-4 bg-gray-900 px-3 py-1 rounded-lg text-white text-sm">
+                        Remote User
+                    </span>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex justify-center items-center gap-4 mt-8">
+                <button id="muteBtn" class="p-4 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-microphone text-white text-xl"></i>
+                </button>
+                <button id="videoBtn" class="p-4 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-video text-white text-xl"></i>
+                </button>
+                <button id="leaveBtn" class="p-4 rounded-full bg-red-600 hover:bg-red-700 transition-colors">
+                    <i class="fas fa-phone-slash text-white text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="client.js"></script>
+</body>
+</html>
